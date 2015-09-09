@@ -32,3 +32,15 @@ SpaceTrade.SpacecraftObject = function(stats) {
 /*SpaceTrade.SpacecraftObject.drill_calc = function(){
 	console.log("I'm drilling now, baby!");
 }*/
+
+function dictToLists(dictItem) {
+	var dictListObj = Object.keys(dictItem).reduce(function(prev, curr){
+		prev.keys = prev.keys || [];
+		prev.vals = prev.vals || [];
+		prev.keys.push(curr);
+		prev.vals.push(dictItem[curr]);
+		return prev;
+	}, {});
+
+	return [dictListObj.keys, dictListObj.vals];
+}
