@@ -29,9 +29,43 @@ SpaceTrade.SpacecraftObject = function(stats) {
 	};
 };
 
+// game calls drill func; passes m3percheck constant and mineObj
+// drill_func looks at the components, rand finds for each drill check
+// and records what items are taken as dict.
+
+// game func will take dict and pass it to mineObj func, 
+//which removes those items from its inv of materials.
+
+// another space craft obj function will take the dict to add to its cargo.
+
+// another func: skill mod - modifies odds of finding specific mats.  
+// calcs before passing to rand func.
+
 /*SpaceTrade.SpacecraftObject.drill_calc = function(){
 	console.log("I'm drilling now, baby!");
 }*/
+
+function rand (min, max) {
+	return Math.random() * (max - min) + min;
+}
+
+function getRandItem (rawMatList, rawRatioList) {
+	var totalWeight = rawRatioList.reduce(function(prev, curr){
+		return prev + curr;
+	});
+
+	var randNum = rand(0, totalWeight);
+	var weightSum = 0;
+
+	for (var i = 0; i < rawRatioList.length; i++) {
+		weightSum += rawRatioList[i];
+		weightSum = +weightSum.toFixed(3);
+
+		if (randNum <= weightSum) {
+			return rawMatList[i]
+		}
+	}
+}
 
 function dictToLists(dictItem) {
 	var dictListObj = Object.keys(dictItem).reduce(function(prev, curr){
