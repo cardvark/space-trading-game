@@ -2,25 +2,9 @@ var SpaceTrade = SpaceTrade || {};
 
 SpaceTrade.Game = {};
 
-SpaceTrade.CONSTANTS = {
-	m3PerCheck : 10,
+SpaceTrade.Constants = {
+	M3_PER_CHECK : 10,
 };
-
-// game calls drill func; passes m3percheck constant and mineObj
-// drill_func looks at the components, rand finds for each drill check
-// and records what items are taken as dict.
-
-// game func will take dict and pass it to mineObj func, 
-//which removes those items from its inv of materials.
-
-// another space craft obj function will take the dict to add to its cargo.
-
-// another func: skill mod - modifies odds of finding specific mats.  
-// calcs before passing to rand func.
-
-/*SpaceTrade.SpacecraftObject.drill_calc = function(){
-	console.log("I'm drilling now, baby!");
-}*/
 
 SpaceTrade.Game.init = function() {
 	SpaceTrade.Player.spacecraft = SpaceTrade.SpacecraftObject.create({
