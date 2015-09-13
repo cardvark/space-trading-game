@@ -22,58 +22,21 @@ SpaceTrade.CONSTANTS = {
 	console.log("I'm drilling now, baby!");
 }*/
 
-SpaceTrade.Game.utilFuncs = {
-
-	rand : function(min, max) {
-		return Math.random() * (max - min) + min;
-	},
-
-	getRandItem : function(rawMatList, rawRatioList) {
-		var totalWeight = rawRatioList.reduce(function(prev, curr){
-			return prev + curr;
-		});
-
-		var randNum = SpaceTrade.Game.utilFuncs.rand(0, totalWeight);
-		var weightSum = 0;
-
-		for (var i = 0; i < rawRatioList.length; i++) {
-			weightSum += rawRatioList[i];
-			weightSum = +weightSum.toFixed(3);
-
-			if (randNum <= weightSum) {
-				return rawMatList[i]
-			}
-		}
-	},
-
-	dictToLists : function (dictItem) {
-		var dictListObj = Object.keys(dictItem).reduce(function(prev, curr){
-			prev.keys = prev.keys || [];
-			prev.vals = prev.vals || [];
-			prev.keys.push(curr);
-			prev.vals.push(dictItem[curr]);
-			return prev;
-		}, {});
-
-		return [dictListObj.keys, dictListObj.vals];
-	},
-
-};
 
 SpaceTrade.Game.init = function() {
-	this.spacecraft = new SpaceTrade.SpacecraftObject({
+	SpaceTrade.Player.spacecraft = SpaceTrade.SpacecraftObject.create({
 		shipType : "defaultShip",
 		drill : 50, //cubic meters per drill
 		drillTime : 10, // seconds
-		drillTierCap : "drill-Tier2",
-		cargoVol : 1000, // cubic meters.
-		cargoMass : 10000, // metric tons.
+		drillTierMax : "drill-Tier2",
+		cargoVolCap : 1000, // cubic meters.
+		cargoMassCap : 10000, // metric tons.
 		fuel : 250,
 		battery : 100,
-		batteryTierCap : "battery-Tier2"
+		batteryTierMax : "battery-Tier2"
 	});
 
-	this.mineObj = new SpaceTrade.MineableObject({
+	SpaceTrade.MineableObject.mineObj = SpaceTrade.MineableObject.create({
 		baseMaterial : "rock",
 		compositionDict : {
 			"rock" : 0.7,
@@ -85,5 +48,4 @@ SpaceTrade.Game.init = function() {
 };
 
 SpaceTrade.Game.init();
-
 
