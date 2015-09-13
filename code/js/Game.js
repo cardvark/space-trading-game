@@ -22,7 +22,6 @@ SpaceTrade.CONSTANTS = {
 	console.log("I'm drilling now, baby!");
 }*/
 
-
 SpaceTrade.Game.init = function() {
 	SpaceTrade.Player.spacecraft = SpaceTrade.SpacecraftObject.create({
 		shipType : "defaultShip",

@@ -7,7 +7,7 @@ SpaceTrade.MathUtils = {
 		return Math.random() * (max - min) + min;
 	},
 
-	get_rand_item : function(rawMatList, rawRatioList) {
+	getRandItem : function(rawMatList, rawRatioList) {
 		var totalWeight = rawRatioList.reduce(function(prev, curr){
 			return prev + curr;
 		});
@@ -25,7 +25,7 @@ SpaceTrade.MathUtils = {
 		}
 	},
 
-	get_item_quantity : function(){
+	getItemQuantity : function(){
 
 	},
 
@@ -33,7 +33,7 @@ SpaceTrade.MathUtils = {
 
 SpaceTrade.TransformUtils = {
 
-	dict_to_lists : function (dictItem) {
+	dictToLists : function (dictItem) {
 		var dictListObj = Object.keys(dictItem).reduce(function(prev, curr){
 			prev.keys = prev.keys || [];
 			prev.vals = prev.vals || [];
@@ -48,12 +48,18 @@ SpaceTrade.TransformUtils = {
 }
 
 SpaceTrade.DebugUtils = {
-	not_negative : function(value) {
+	notNegative : function(value) {
 		if (value < 0) {
-			console.log("You reduced something to below zero, fix this.");
+			console.error("You reduced something to below zero, fix this.");
 			return 0;
 		} else {
 			return value;
+		}
+	},
+
+	notExist : function(item) {
+		if (typeof item == "undefined") {
+			console.error("Undefined item!  What are you changing?");
 		}
 	},
 }

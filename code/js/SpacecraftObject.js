@@ -31,15 +31,17 @@ SpaceTrade.SpacecraftObject = {
 	cargoItems : {},
 
 	setDictVal : function(key, item, val) {
+		SpaceTrade.DebugUtils.notExist(this[key]);
 		this[key][item] = this[key][item] || 0;
 		this[key][item] += val;
-		this[key][item] = SpaceTrade.DebugUtils.not_negative(this[key][item]);
+		this[key][item] = SpaceTrade.DebugUtils.notNegative(this[key][item]);
 	},
 
 	setVal : function(key, val) {
+		SpaceTrade.DebugUtils.notExist(this[key]);
 		this[key] = this[key] || 0;
 		this[key] += val;
-		this[key] = SpaceTrade.DebugUtils.not_negative(this[key]);
+		this[key] = SpaceTrade.DebugUtils.notNegative(this[key]);
 	},
 
 };
