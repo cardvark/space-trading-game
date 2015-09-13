@@ -7,7 +7,7 @@ SpaceTrade.Constants = {
 };
 
 SpaceTrade.Game.init = function() {
-	SpaceTrade.Player.spacecraft = SpaceTrade.SpacecraftObject.create({
+	SpaceTrade.Player.currentShip = new SpaceTrade.Spacecraft({
 		shipType : "defaultShip",
 		drill : 50, //cubic meters per drill
 		drillTime : 10, // seconds
@@ -19,7 +19,9 @@ SpaceTrade.Game.init = function() {
 		batteryTierMax : "battery-Tier2"
 	});
 
-	SpaceTrade.MineableObject.mineObj = SpaceTrade.MineableObject.create({
+	// need to create file and class for current mineable objects.
+
+	SpaceTrade.MineableObject.mineObj = new SpaceTrade.MineableObject({
 		baseMaterial : "rock",
 		compositionDict : {
 			"rock" : 0.7,
@@ -27,7 +29,7 @@ SpaceTrade.Game.init = function() {
 			"gold" : 0.02,
 		},
 		totalVolume : 10000,
-	})
+	});
 };
 
 SpaceTrade.Game.init();
